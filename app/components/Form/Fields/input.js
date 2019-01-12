@@ -16,6 +16,7 @@ class newComponent extends Component {
         validateStatus={hasError ? 'error' : 'success'}
       >
         <InputComonent
+          type={type}
           {...input}
           {...rest}
         />

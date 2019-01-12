@@ -13,12 +13,13 @@ const SignInForm = props => {
       onSubmit={handleSubmit}
       className="signin-form-components form-shared"
     >
-      <Spin 
+      <Spin
         spinning={submitting}
         tip="Submitting..."
       >
-        <div className="logo">
-        </div>
+        <h1 className="logo">
+          Login
+        </h1>
         <Field
           name="email"
           hasFeedback
@@ -62,7 +63,7 @@ const validate = values => {
 
   if (!values.get('password')) {
     errors.password = 'Password can\'t be blank';
-  } 
+  }
 
   return errors;
 };

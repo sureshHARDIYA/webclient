@@ -9,6 +9,7 @@ export const INITIAL_STATE = fromJS({
   isLoading: false,
 });
 
+export const onLogoutSuccess = (state) => state.set('isAsync', true).set('info', fromJS({})).set('isLoading', true).set('message', '');
 
 export const onRefreshRequest = (state) => state.set('isAsync', false);
 
@@ -23,6 +24,7 @@ export const onSubmitFailure = (state, { message }) => state.set('isLoading', fa
 export const onSubmitSuccess = (state, { user }) => state.set('isLoading', false).set('message', '').set('info', fromJS(user));
 
 export const ACTION_HANDLERS = {
+  [LOGIN.LOGOUT_SUCCESS]: onLogoutSuccess,
   [LOGIN.REFRESH_REQUEST]: onRefreshRequest,
   [LOGIN.REFRESH_FAILURE]: onRefreshFailure,
   [LOGIN.REFRESH_SUCCESS]: onRefreshSuccess,

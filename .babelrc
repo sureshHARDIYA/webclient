@@ -12,11 +12,11 @@
         "root": ["./"],
         "alias": {
           "data": "./app/data",
+          "sagas": "./app/sagas",
           "utils": "./app/utils",
           "assets": "./app/assets",
           "helpers": "./app/helpers",
           "actions": "./app/actions",
-          "services": "./app/services",
           "reducers": "./app/reducers",
           "selectors": "./app/selectors",
           "components": "./app/components"

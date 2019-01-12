@@ -1,14 +1,15 @@
 import { fromJS } from 'immutable';
 import { persistState } from 'redux-devtools';
 import { createStore, applyMiddleware, compose } from 'redux';
-
-import thunk from 'redux-thunk';
+import createSagaMiddleware from 'redux-saga';
+import sagas from 'sagas';
 import reducers from 'reducers';
 
+const sagaMiddleware = createSagaMiddleware();
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const enhancer = composeEnhancers(
-  applyMiddleware(thunk),
+  applyMiddleware(sagaMiddleware),
   persistState(
     window.location.href.match(
       /[?&]debug_session=([^&#]+)\b/
@@ -22,6 +23,9 @@ export default (initialState = {}) => {
     fromJS(initialState),
     enhancer,
   );
+
+  store.runSaga = sagaMiddleware.run;
+  store.runSaga(sagas);
 
   if (module.hot) {
     module.hot.accept('../', () => store.replaceReducer(require('../').default));

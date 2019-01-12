@@ -1,12 +1,6 @@
-import currentUser from 'services/currentUser';
 import { LOGIN } from './constants';
 
-export const onSubmitRequest = (params = {}) => dispatch => {
-  dispatch({ type: LOGIN.SUBMITING_REQUEST, user: params });
-  return currentUser.onLogin(params)
-    .then((user) => dispatch(onSubmitSuccess(user)))
-    .catch((error) => dispatch(onSubmitFailure(error.message)));
-};
+export const onSubmitRequest = (params = {}, cb = false) => ({ type: LOGIN.SUBMITING_REQUEST, user: params, cb });
 
 export const onSubmitFailure = (message) => ({ type: LOGIN.SUBMITING_FAILURE, message });
 
@@ -18,12 +12,7 @@ export const onLogoutFailure = (message) => ({ type: LOGIN.LOGOUT_FAILURE, messa
 
 export const onLogoutSuccess = () => ({ type: LOGIN.LOGOUT_SUCCESS });
 
-export const onRefreshRequest = () => dispatch => {
-  dispatch({ type: LOGIN.REFRESH_REQUEST });
-  return currentUser.onLoad()
-    .then((user) => dispatch(onRefreshSuccess(user)))
-    .catch(() => dispatch(onRefreshFailure()));
-};
+export const onRefreshRequest = () => ({ type: LOGIN.REFRESH_REQUEST });
 
 export const onRefreshFailure = () => ({ type: LOGIN.REFRESH_FAILURE });
 

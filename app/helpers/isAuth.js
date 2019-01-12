@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { withRouter } from 'next/router'
 import * as UserSelector from 'selectors/currentUser';
-import { onLogoutSuccess, onRefreshSuccess } from 'actions/login';
+import { onLogoutRequest, onRefreshSuccess } from 'actions/login';
 
 
 export const isAuth = (OldComponent) => {
@@ -23,7 +23,7 @@ export const isAuth = (OldComponent) => {
   });
 
   const mapDispatchToProps = (dispatch) => ({
-    onLogout: () => dispatch(onLogoutSuccess()),
+    onLogout: () => dispatch(onLogoutRequest()),
     onRefresh: () => dispatch(onRefreshSuccess()),
   });
 
@@ -38,7 +38,7 @@ export const idRequired = (OldComponent) => {
       if (isAsync) {
         if (!currentUser.uuid) {
           router.push('/login');
-          // typeof document !== 'undefined' && document.body.classList.remove('signed-in');
+          typeof document !== 'undefined' && document.body.classList.remove('signed-in');
         }
       }
     }
@@ -49,7 +49,7 @@ export const idRequired = (OldComponent) => {
       if (isAsync) {
         if (!currentUser.uuid) {
           router.push('/login');
-          // typeof document !== 'undefined' && document.body.classList.remove('signed-in');
+          typeof document !== 'undefined' && document.body.classList.remove('signed-in');
         }
       }
     }
@@ -73,7 +73,7 @@ export const idRequired = (OldComponent) => {
   });
 
   const mapDispatchToProps = (dispatch) => ({
-    onLogout: () => dispatch(onLogoutSuccess()),
+    onLogout: () => dispatch(onLogoutRequest()),
     onRefresh: () => dispatch(onRefreshSuccess()),
   });
 

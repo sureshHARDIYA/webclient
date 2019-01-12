@@ -6,7 +6,7 @@ class Admin extends Component {
   render() {
     return (
       <App {...this.props}>
-        <h1>AllCategory</h1>
+        <h1>AllUser</h1>
       </App>
     );
   }

@@ -30,11 +30,6 @@ class HeaderAdmin extends Component {
                 Back href app
               </Link>
             </Menu.Item>
-            <Menu.Item key="profile">
-              <Link href="/admin/profile">
-                Profile
-              </Link>
-            </Menu.Item>
             <Menu.Item key="logout">Sign out</Menu.Item>
           </Menu.SubMenu>
         </Menu>
