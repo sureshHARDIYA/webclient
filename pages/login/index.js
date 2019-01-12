@@ -8,7 +8,6 @@ import Head from 'next/head'
 
 class Login extends Component {
   UNSAFE_componentWillReceiveProps(nextProps) {
-    console.log(nextProps.hasUser);
     if (nextProps.hasUser && !this.props.hasUser) {
       this.props.router.push('/admin');
     }
