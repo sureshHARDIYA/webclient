@@ -16,7 +16,7 @@ export default [
   },
   {
     id: '2.1',
-    bpid: '2',
+    bpid: '1',
     mpid: '2',
     name: 'All posts',
     route: '/admin/posts',
@@ -28,6 +28,14 @@ export default [
     mpid: '2',
     name: 'Add post',
     route: '/admin/posts/new',
+    roles: ['admin'],
+  },
+  {
+    id: '2.3',
+    bpid: '3',
+    mpid: '2',
+    name: 'Category',
+    route: '/admin/posts/category',
     roles: ['admin'],
   },
   {

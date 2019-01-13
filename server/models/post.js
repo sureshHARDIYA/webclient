@@ -3,6 +3,11 @@ import SequelizeSlugify from 'sequelize-slugify';
 
 export default (sequelize, DataTypes) => {
   const Post = sequelize.define('Post', {
+    uuid: {
+      primaryKey: true,
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV1,
+    },
     title: {
       unique: true,
       type: DataTypes.STRING,
@@ -31,6 +36,9 @@ export default (sequelize, DataTypes) => {
       defaultValue: 0,
       type: DataTypes.INTEGER,
     },
+    seq: {
+      type: DataTypes.INTEGER
+    },
     slug: {
       unique: true,
       type: DataTypes.STRING,
@@ -39,7 +47,7 @@ export default (sequelize, DataTypes) => {
 
   const requiredField = ['title', 'content', 'status'];
   const permitFields = ['title', 'subtitle', 'excerpt', 'content', 'authorId', 'categoryId', 'status', 'view'];
-  const publicFields = ['uuid', 'title', 'subtitle', 'excerpt', 'content', 'authorId', 'categoryId', 'status', 'view', 'photoURL', 'createdAt', 'updatedAt'];
+  const publicFields = ['uuid', 'seq', 'slug',...permitFields, 'photoURL', 'createdAt', 'updatedAt'];
 
   Post.associate = (models) => {
     Post.belongsTo(models.User, { foreignKey: 'authorId', as: 'author' });

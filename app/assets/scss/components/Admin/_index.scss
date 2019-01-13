@@ -22,6 +22,17 @@
   }
 
   .ant-layout-content {
-    padding: 32px;
+    margin: 32px;
+    padding: 16px;
+    background-color: $white;
+
+    .title-page {
+      margin: 0;
+      padding-right: 10px;
+    }
+
+    .box-header {
+      margin-bottom: 30px;
+    }
   }
 }

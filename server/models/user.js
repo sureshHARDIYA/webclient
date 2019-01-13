@@ -63,11 +63,14 @@ export default (sequelize, DataTypes) => {
         return [this.firstName, this.lastName].join(' ').trim();
       },
     },
+    seq: {
+      type: DataTypes.INTEGER
+    },
   }, {});
 
   const requiredField = ['email', 'password', 'lastName', 'firstName'];
   const permitFields = ['email', 'password', 'lastName', 'firstName', 'gender', 'role', 'status', 'gender', 'phone', 'displayName', 'dob', 'photoURL'];
-  const publicFields = ['uuid', 'email', 'lastName', 'firstName', 'gender', 'role', 'status', 'gender', 'phone', 'displayName', 'dob', 'photoURL', 'createdAt', 'updatedAt'];
+  const publicFields = ['uuid', 'seq', ...permitFields, 'createdAt', 'updatedAt'];
 
   User.associate = (models) => {
     User.hasMany(models.Post, { foreignKey: 'authorId' });
