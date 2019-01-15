@@ -6,5 +6,10 @@
 @import './shared/form';
 
 @import './components/Admin/index';
+@import './components/Admin/dashboard';
+@import './components/Themes/trend';
+@import './components/Themes/Charts/pie';
+@import './components/Themes/Charts/card';
+@import './components/Themes/Charts/mini-progress';
 
 @import './pages/login';

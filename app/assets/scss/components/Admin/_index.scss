@@ -22,9 +22,12 @@
   }
 
   .ant-layout-content {
-    margin: 32px;
+    margin: 16px;
     padding: 16px;
-    background-color: $white;
+
+    > div:not(.transaprent) {
+      background-color: $white;
+    }
 
     .title-page {
       margin: 0;
