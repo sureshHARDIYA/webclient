@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { Row, Col, Layout } from 'antd';
 import Head from 'next/head';
-import App from 'components/App';
+import App from 'components/Admin';
 
 class Page extends Component {
   render() {
     return (
-      <App>
+      <App {...this.props}>
         <Head>
          <title>Welcome app page</title>
         </Head>

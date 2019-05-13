@@ -1,36 +1,24 @@
 import { fromJS } from 'immutable';
+import Cookie from 'js-cookie';
 import { createReducer } from 'reduxsauce';
 import { LOGIN } from 'actions/constants';
 
 export const INITIAL_STATE = fromJS({
-  info: {},
-  message: '',
-  isAsync: false,
-  isLoading: false,
+  info: {
+    token: Cookie.get('access_token') || Cookie.get('access_token')
+  }
 });
 
-export const onLogoutSuccess = (state) => state.set('isAsync', true).set('info', fromJS({})).set('isLoading', true).set('message', '');
+export const onInit = state => state.set('info', fromJS({ token: Cookie.get('access_token') }));
 
-export const onRefreshRequest = (state) => state.set('isAsync', false);
-
-export const onRefreshFailure = (state) => state.set('isAsync', true);
-
-export const onRefreshSuccess = (state, { user = {} }) => state.set('isAsync', true).set('info', fromJS(user));
-
-export const onSubmitRequest = (state) => state.set('isLoading', true).set('message', '');
-
-export const onSubmitFailure = (state, { message }) => state.set('isLoading', false).set('message', message);
-
-export const onSubmitSuccess = (state, { user }) => state.set('isLoading', false).set('message', '').set('info', fromJS(user));
+export const onRefreshSuccess = (state, { token }) => {
+  Cookie.set('access_token', token, { expires: 7 });
+  return state.set('info', fromJS({ token }));
+}
 
 export const ACTION_HANDLERS = {
-  [LOGIN.LOGOUT_SUCCESS]: onLogoutSuccess,
-  [LOGIN.REFRESH_REQUEST]: onRefreshRequest,
-  [LOGIN.REFRESH_FAILURE]: onRefreshFailure,
+  '@@INIT': onInit,
   [LOGIN.REFRESH_SUCCESS]: onRefreshSuccess,
-  [LOGIN.SUBMITING_REQUEST]: onSubmitRequest,
-  [LOGIN.SUBMITING_FAILURE]: onSubmitFailure,
-  [LOGIN.SUBMITING_SUCCESS]: onSubmitSuccess,
 };
 
 export default createReducer(INITIAL_STATE, ACTION_HANDLERS);

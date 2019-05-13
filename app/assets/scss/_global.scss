@@ -13,3 +13,12 @@ body {
     background-color: transparent;
   }
 }
+
+.login-screen {
+  margin: auto;
+  display: flex;
+  min-width: 100px;
+  min-height: 100px;
+  align-items: center;
+  justify-content: center;
+}

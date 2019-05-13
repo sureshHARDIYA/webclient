@@ -2392,6 +2392,14 @@ cross-env@5.2.0:
     cross-spawn "^6.0.5"
     is-windows "^1.0.0"
 
+cross-fetch@2.2.2:
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/cross-fetch/-/cross-fetch-2.2.2.tgz#a47ff4f7fc712daba8f6a695a11c948440d45723"
+  integrity sha1-pH/09/xxLauo9qaVoRyUhEDUVyM=
+  dependencies:
+    node-fetch "2.1.2"
+    whatwg-fetch "2.0.4"
+
 cross-spawn@5.1.0, cross-spawn@^5.0.1:
   version "5.1.0"
   resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-5.1.0.tgz#e8bd0efee58fcff6f8f94510a0a554bbfa235449"
@@ -2825,7 +2833,21 @@ domain-browser@^1.1.1:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/domain-browser/-/domain-browser-1.2.0.tgz#3d31f50191a6749dd1375a7f522e823d42e54eda"
 
-dotenv@6.2.0:
+dotenv-defaults@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/dotenv-defaults/-/dotenv-defaults-1.0.2.tgz#441cf5f067653fca4bbdce9dd3b803f6f84c585d"
+  integrity sha512-iXFvHtXl/hZPiFj++1hBg4lbKwGM+t/GlvELDnRtOFdjXyWP7mubkVr+eZGWG62kdsbulXAef6v/j6kiWc/xGA==
+  dependencies:
+    dotenv "^6.2.0"
+
+dotenv-webpack@^1.7.0:
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/dotenv-webpack/-/dotenv-webpack-1.7.0.tgz#4384d8c57ee6f405c296278c14a9f9167856d3a1"
+  integrity sha512-wwNtOBW/6gLQSkb8p43y0Wts970A3xtNiG/mpwj9MLUhtPCQG6i+/DSXXoNN7fbPCU/vQ7JjwGmgOeGZSSZnsw==
+  dependencies:
+    dotenv-defaults "^1.0.2"
+
+dotenv@6.2.0, dotenv@^6.2.0:
   version "6.2.0"
   resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-6.2.0.tgz#941c0410535d942c8becf28d3f357dbd9d476064"
 
@@ -3793,6 +3815,25 @@ graphlib@^2.1.7:
   dependencies:
     lodash "^4.17.5"
 
+graphql-request@^1.8.2:
+  version "1.8.2"
+  resolved "https://registry.yarnpkg.com/graphql-request/-/graphql-request-1.8.2.tgz#398d10ae15c585676741bde3fc01d5ca948f8fbe"
+  integrity sha512-dDX2M+VMsxXFCmUX0Vo0TopIZIX4ggzOtiCsThgtrKR4niiaagsGTDIHj3fsOMFETpa064vzovI+4YV4QnMbcg==
+  dependencies:
+    cross-fetch "2.2.2"
+
+graphql-tag@^2.10.1:
+  version "2.10.1"
+  resolved "https://registry.yarnpkg.com/graphql-tag/-/graphql-tag-2.10.1.tgz#10aa41f1cd8fae5373eaf11f1f67260a3cad5e02"
+  integrity sha512-jApXqWBzNXQ8jYa/HLkZJaVw9jgwNqZkywa2zfFn16Iv1Zb7ELNHkJaXHR7Quvd5SIGsy6Ny7SUKATgnu05uEg==
+
+graphql@^14.3.0:
+  version "14.3.0"
+  resolved "https://registry.yarnpkg.com/graphql/-/graphql-14.3.0.tgz#34dd36faa489ff642bcd25df6c3b4f988a1a2f3e"
+  integrity sha512-MdfI4v7kSNC3NhB7cF8KNijDsifuWO2XOtzpyququqaclO8wVuChYv+KogexDwgP5sp7nFI9Z6N4QHgoLkfjrg==
+  dependencies:
+    iterall "^1.2.2"
+
 gud@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/gud/-/gud-1.0.0.tgz#a489581b17e6a70beca9abe3ae57de7a499852c0"
@@ -4378,6 +4419,11 @@ istanbul-lib-instrument@^1.4.2:
     babylon "^6.18.0"
     istanbul-lib-coverage "^1.2.1"
     semver "^5.3.0"
+
+iterall@^1.2.2:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/iterall/-/iterall-1.2.2.tgz#92d70deb8028e0c39ff3164fdbf4d8b088130cd7"
+  integrity sha512-yynBb1g+RFUPY64fTrFv7nsjRrENBQJaX2UL+2Szc9REFrSNm1rpSXHGzhmAy7a9uv3vlvgBlXnf9RqmPH1/DA==
 
 js-base64@^2.1.8:
   version "2.4.9"
@@ -5251,6 +5297,11 @@ next@7.0.2:
 nice-try@^1.0.4:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/nice-try/-/nice-try-1.0.5.tgz#a3378a7696ce7d223e88fc9b764bd7ef1089e366"
+
+node-fetch@2.1.2:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.1.2.tgz#ab884e8e7e57e38a944753cec706f788d1768bb5"
+  integrity sha1-q4hOjn5X44qUR1POxwb3iNF2i7U=
 
 node-fetch@^1.0.1:
   version "1.7.3"
@@ -8284,6 +8335,11 @@ webpackbar@2.6.3:
     schema-utils "^1.0.0"
     std-env "^1.3.1"
     table "^4.0.3"
+
+whatwg-fetch@2.0.4:
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/whatwg-fetch/-/whatwg-fetch-2.0.4.tgz#dde6a5df315f9d39991aa17621853d720b85566f"
+  integrity sha512-dcQ1GWpOD/eEQ97k66aiEVpNnapVj90/+R+SXTPYGHpYBBypfKJEQjLrvMZ7YXbKm21gXd4NcuxUTjiv1YtLng==
 
 whatwg-fetch@>=0.10.0:
   version "3.0.0"

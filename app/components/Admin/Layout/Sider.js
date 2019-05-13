@@ -24,7 +24,7 @@ class Sider extends PureComponent {
       >
         <div className="admin-logo flexbox justify-content-center">
           <NavLink
-            href="/admin"
+            href="/"
             // className="header-logo"
           >
             Admin Management

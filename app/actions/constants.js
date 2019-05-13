@@ -7,15 +7,9 @@ export const APP = {
 };
 
 export const LOGIN = {
-  ...PREFIX_CONST_REQUEST('LOGOUT'),
   ...PREFIX_CONST_REQUEST('REFRESH'),
-  ...PREFIX_CONST_REQUEST('SUBMITING'),
 };
 
-export const ADMINPOST = {
+export const PATIENT = {
   ...PREFIX_CONST_REQUEST('SEARCH'),
-  ...PREFIX_CONST_REQUEST('CREATE'),
-  ...PREFIX_CONST_REQUEST('UPDATE'),
-  ...PREFIX_CONST_REQUEST('DELETE'),
 };
-

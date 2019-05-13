@@ -4,16 +4,13 @@ import { Layout, Spin } from 'antd';
 import { connect } from 'react-redux';
 import { withRouter } from 'next/router'
 import { createStructuredSelector } from 'reselect';
+import { isAuth } from 'helpers/isAuth';
 import * as AppSelector from 'selectors/app';
 import Sider from 'components/Admin/Layout/Sider';
 import Header from 'components/Admin/Layout/Header';
 
 class AdminLayout extends Component {
   render() {
-    if (!(this.props.currentUser || {}).uuid) {
-      return null;
-    }
-
     return (
         <Layout
           className="admin-components"
@@ -46,4 +43,4 @@ const mapStateToProps = createStructuredSelector({
   loading: AppSelector.getRouting(),
 });
 
-export default connect(mapStateToProps)(withRouter(AdminLayout));
+export default isAuth(connect(mapStateToProps)(withRouter(AdminLayout)));

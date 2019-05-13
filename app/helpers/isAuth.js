@@ -4,63 +4,35 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { withRouter } from 'next/router'
 import * as UserSelector from 'selectors/currentUser';
-import { onLogoutRequest, onRefreshSuccess } from 'actions/login';
-
+import { onRefreshSuccess } from 'actions/login';
 
 export const isAuth = (OldComponent) => {
-  const newComponent = props => (props.isAsync ? <OldComponent {...props} /> : <div />);
-
-  newComponent.propTypes = {
-    isAsync: PropTypes.bool,
-    currentUser: PropTypes.object,
-  };
-
-  newComponent.defaultProps = { currentUser: {} };
-
-  const mapStateToProps = createStructuredSelector({
-    isAsync: UserSelector.getIsAsync(),
-    currentUser: UserSelector.getCurrentUser(),
-  });
-
-  const mapDispatchToProps = (dispatch) => ({
-    onLogout: () => dispatch(onLogoutRequest()),
-    onRefresh: () => dispatch(onRefreshSuccess()),
-  });
-
-  return withRouter(connect(mapStateToProps, mapDispatchToProps)(newComponent));
-};
-
-export const idRequired = (OldComponent) => {
   class newComponent extends Component {
     UNSAFE_componentWillMount() {
-      const { currentUser, router, isAsync } = this.props;
-
-      if (isAsync) {
-        if (!currentUser.uuid) {
-          router.push('/login');
-          typeof document !== 'undefined' && document.body.classList.remove('signed-in');
-        }
-      }
-    }
-
-    componentDidUpdate() {
-      const { currentUser, router, isAsync } = this.props;
-
-      if (isAsync) {
-        if (!currentUser.uuid) {
-          router.push('/login');
-          typeof document !== 'undefined' && document.body.classList.remove('signed-in');
-        }
+      const { asPath } = this.props.router;
+      const params = asPath.match(/access_token=(.*)&expires_in/);
+      if (params && params[1]) {
+        console.log('params:', params);
+        this.props.onRefresh(params[1]);
       }
     }
 
     render() {
-      return this.props.isAsync ? <OldComponent {...this.props} /> : <div />;
+      const { currentUser } = this.props;
+
+      if (currentUser && currentUser.token) {
+        return <OldComponent {...this.props} />;
+      }
+
+      return (
+        <div className="login-screen">
+          <a href={`${process.env.OAUTH_URL}/auth?client_id=${process.env.CLIENT_ID}&response_type=id_token+token&scope=openid+email+patient/*.*&nonce=foobar&prompt=login`}>Click login</a>
+        </div>
+      )
     }
   }
 
   newComponent.propTypes = {
-    isAsync: PropTypes.bool,
     router: PropTypes.object,
     currentUser: PropTypes.object,
   };
@@ -68,13 +40,11 @@ export const idRequired = (OldComponent) => {
   newComponent.defaultProps = { currentUser: {} };
 
   const mapStateToProps = createStructuredSelector({
-    isAsync: UserSelector.getIsAsync(),
     currentUser: UserSelector.getCurrentUser(),
   });
 
   const mapDispatchToProps = (dispatch) => ({
-    onLogout: () => dispatch(onLogoutRequest()),
-    onRefresh: () => dispatch(onRefreshSuccess()),
+    onRefresh: token => dispatch(onRefreshSuccess(token)),
   });
 
   return withRouter(connect(mapStateToProps, mapDispatchToProps)(newComponent));

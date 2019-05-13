@@ -20,7 +20,8 @@
           "actions": "./app/actions",
           "reducers": "./app/reducers",
           "selectors": "./app/selectors",
-          "components": "./app/components"
+          "components": "./app/components",
+          "graphiql": "./app/graphql"
         }
       }
     ],

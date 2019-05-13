@@ -4,9 +4,9 @@
   "license": "MIT",
   "scripts": {
     "build": "next build",
-    "dev": "nodemon server",
-    "start": "NODE_ENV=production node server",
-    "eslint": "say 'checking eslint' && eslint --ignore-path .gitignore app/**/*.js pages/**/*.js server/**/*.js && say 'eslint clean'"
+    "dev": "next",
+    "start": "NODE_ENV=production next start -p 3005",
+    "eslint": "say 'checking eslint' && eslint --ignore-path .gitignore app/**/*.js pages/**/*.js && say 'eslint clean'"
   },
   "pre-commit": "eslint",
   "dependencies": {
@@ -29,9 +29,13 @@
     "cloudinary": "1.13.2",
     "cookie-parser": "1.4.3",
     "dotenv": "6.2.0",
+    "dotenv-webpack": "^1.7.0",
     "exenv": "^1.2.2",
     "express": "4.16.4",
     "express-session": "1.15.6",
+    "graphql": "^14.3.0",
+    "graphql-request": "^1.8.2",
+    "graphql-tag": "^2.10.1",
     "immutable": "4.0.0-rc.12",
     "js-cookie": "2.2.0",
     "jsonwebtoken": "8.4.0",
