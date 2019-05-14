@@ -2,6 +2,7 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import App, { Container } from 'next/app';
 import Router from 'next/router';
+import Cookie from 'js-cookie';
 import withRedux from 'next-redux-wrapper';
 import { initStore } from 'reducers/store';
 import {
@@ -36,4 +37,4 @@ class Page extends App {
   }
 }
 
-export default withRedux(initStore)(Page);
+export default withRedux(() => initStore({ currentUser: { info: { token: Cookie.get('access_token') } } }))(Page);

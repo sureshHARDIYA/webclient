@@ -5,11 +5,9 @@ import { LOGIN } from 'actions/constants';
 
 export const INITIAL_STATE = fromJS({
   info: {
-    token: Cookie.get('access_token') || Cookie.get('access_token')
+    token: Cookie.get('access_token')
   }
 });
-
-export const onInit = state => state.set('info', fromJS({ token: Cookie.get('access_token') }));
 
 export const onRefreshSuccess = (state, { token }) => {
   Cookie.set('access_token', token, { expires: 7 });
@@ -17,7 +15,6 @@ export const onRefreshSuccess = (state, { token }) => {
 }
 
 export const ACTION_HANDLERS = {
-  '@@INIT': onInit,
   [LOGIN.REFRESH_SUCCESS]: onRefreshSuccess,
 };
 
