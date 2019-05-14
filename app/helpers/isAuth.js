@@ -12,7 +12,6 @@ export const isAuth = (OldComponent) => {
       const { asPath } = this.props.router;
       const params = asPath.match(/access_token=(.*)&expires_in/);
       if (params && params[1]) {
-        console.log('params:', params);
         this.props.onRefresh(params[1]);
       }
     }

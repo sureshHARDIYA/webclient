@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Row, Col, Layout, Table } from 'antd';
 import { connect } from 'react-redux';
+import queryString from 'qs';
+import { withRouter } from 'next/router'
 import Head from 'next/head'
 import App from 'components/Admin';
 import { onSearchRequest } from 'actions/patient';
@@ -33,10 +35,19 @@ class Patients extends Component {
   }]
 
   componentDidMount() {
-    this.props.onLoad();
+    this.props.onLoad(this.props.router.query);
   }
 
+  onChange = (page) => {
+    const { query = {}, pathname } = this.props.router;
+    query.page = page;
+    this.props.onLoad(query);
+    this.props.router.replace(`${pathname}?${queryString.stringify(query)}`);
+  };
+
   render() {
+    const { list, isLoaded, total, pageSize, currentPage: current } = this.props;
+
     return (
       <App {...this.props}>
         <div className="patients-pages">
@@ -48,8 +59,15 @@ class Patients extends Component {
               <Col span={24}>
                 <Table
                   rowKey="id"
+                  dataSource={list}
+                  loading={isLoaded}
                   columns={this.columns}
-                  dataSource={this.props.patients}
+                  pagination={{
+                    total,
+                    current,
+                    pageSize,
+                    onChange: this.onChange,
+                  }}
                 />
               </Col>
             </Row>
@@ -62,15 +80,26 @@ class Patients extends Component {
 
 Patients.propTypes = {
   onLoad: PropTypes.func,
-  patients: PropTypes.array.isRequired,
+  list: PropTypes.array.isRequired,
+  total: PropTypes.number.isRequired,
+  router: PropTypes.object.isRequired,
+  isLoaded: PropTypes.bool.isRequired,
+  pageSize: PropTypes.number.isRequired,
+  totalPage: PropTypes.number.isRequired,
+  currentPage: PropTypes.number.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
-  patients: PatientSelector.getPatientList(),
+  list: PatientSelector.getPatientList(),
+  total: PatientSelector.getCount(),
+  isLoaded: PatientSelector.getLoaded(),
+  pageSize: PatientSelector.getPageSize(),
+  totalPage: PatientSelector.getTotalPage(),
+  currentPage: PatientSelector.getCurrentPage(),
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onLoad: (params) => dispatch(onSearchRequest(params)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Patients);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Patients));
