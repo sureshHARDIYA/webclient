@@ -1,19 +1,19 @@
-import React, { Component } from 'react';
-import { Row, Col, Layout } from 'antd';
-import Head from 'next/head';
-import App from 'components/Admin';
+import React, { Component } from "react";
+import { Row, Col, Layout } from "antd";
+import Head from "next/head";
+import App from "components/Admin";
 
 class Page extends Component {
   render() {
     return (
       <App {...this.props}>
         <Head>
-         <title>Welcome app page</title>
+          <title>INTROMAT-Frontend Page</title>
         </Head>
         <Layout.Content>
           <Row>
             <Col span={24}>
-              <h1>Welcome to app</h1>
+              <h1>Welcome INTROMAT Mental Health Intervetion Page</h1>
             </Col>
           </Row>
         </Layout.Content>
