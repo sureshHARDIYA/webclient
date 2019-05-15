@@ -18,7 +18,6 @@ export const onSearchFailure = state => state.set("isLoading", false);
 
 export const onSearchSuccess = (state, action) => {
   const { entry, total, page, pageSize, totalPage } = action;
-
   return state
     .set("isLoading", false)
     .set("page", page)
@@ -28,12 +27,10 @@ export const onSearchSuccess = (state, action) => {
     .set("list", fromJS(entry.map(({ resource }) => resource)));
 };
 
-console.log(ORGANIZATION);
-
 export const ACTION_HANDLERS = {
-  [ORGANIZATION.SEARCH_REQUEST]: onSearchRequest,
-  [ORGANIZATION.SEARCH_FAILURE]: onSearchFailure,
-  [ORGANIZATION.SEARCH_SUCCESS]: onSearchSuccess
+  [ORGANIZATION.ORGANIZATION_REQUEST]: onSearchRequest,
+  [ORGANIZATION.ORGANIZATION_FAILURE]: onSearchFailure,
+  [ORGANIZATION.ORGANIZATION_SUCCESS]: onSearchSuccess
 };
 
 export default createReducer(INITIAL_STATE, ACTION_HANDLERS);

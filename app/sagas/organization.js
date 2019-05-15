@@ -2,7 +2,7 @@ import client from "utils/graphql-client";
 import { call, put } from "redux-saga/effects";
 import * as ORGANIZATION from "actions/organization";
 
-export function* onOrganizationRequest(action) {
+export function* onSearchRequest(action) {
   try {
     const { OrganizationList } = yield call(
       client,
@@ -13,25 +13,29 @@ export function* onOrganizationRequest(action) {
           page
           pageSize
           totalPage
-
           entry {
             resource {
               ...on Organization {
                 id
                 active
                 resourceType
+                name
+                address {
+                  text
+                  country
+                }
               }
             }
           }
         }
       }
     `,
-      { limit: parseInt(action.limit) || 10, page: parseInt(action.page) || 1 }
+      { limit: parseInt(action.limit) || 100, page: parseInt(action.page) || 1 }
     );
 
-    yield put(ORGANIZATION.onOrganizationSuccess(OrganizationList));
+    yield put(ORGANIZATION.onSearchSuccess(OrganizationList));
     action.cb && (yield call(action.cb, OrganizationList));
   } catch (err) {
-    yield put(ORGANIZATION.onOrganizationFailure({ error: err }));
+    yield put(ORGANIZATION.onSearchFailure({ error: err }));
   }
 }

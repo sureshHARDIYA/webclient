@@ -7,7 +7,7 @@ import * as ORGANIZATIONWATCHER from "./organization";
 export default function* root() {
   yield takeLatest(PATIENT.SEARCH_REQUEST, PATIENTWATCHER.onSearchRequest);
   yield takeLatest(
-    ORGANIZATION.SEARCH_REQUEST,
-    ORGANIZATIONWATCHER.onOrganizationRequest
+    ORGANIZATION.ORGANIZATION_REQUEST,
+    ORGANIZATIONWATCHER.onSearchRequest
   );
 }

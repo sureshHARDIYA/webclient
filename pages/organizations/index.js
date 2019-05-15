@@ -7,7 +7,7 @@ import { connect } from "react-redux";
 import { withRouter } from "next/router";
 import { Row, Col, Layout, Table } from "antd";
 import { createStructuredSelector } from "reselect";
-import { onOrganizationRequest } from "actions/organization";
+import { onSearchRequest } from "actions/organization";
 import * as OrganizationSelector from "selectors/organization";
 
 class Organizations extends Component {
@@ -19,15 +19,21 @@ class Organizations extends Component {
     },
     {
       title: "Name",
-      key: "title",
-      dataIndex: "title",
+      key: "name",
+      dataIndex: "name"
+    },
+    {
+      title: "Address",
+      key: "address",
+      dataIndex: "address",
       render: (item, record) => {
-        const name = (record.name || [])[0] || {};
-        return (
-          <span>
-            {[(name.given || [])[0] || "", name.family || ""].join(" ").trim()}
+        const addressLine = record.address || [];
+        return addressLine.map((item, index) => (
+          <span key={index}>
+            {item.text}
+            {","}
           </span>
-        );
+        ));
       }
     },
     {
@@ -109,7 +115,7 @@ const mapStateToProps = createStructuredSelector({
 });
 
 const mapDispatchToProps = dispatch => ({
-  onLoad: params => dispatch(onOrganizationRequest(params))
+  onLoad: params => dispatch(onSearchRequest(params))
 });
 
 export default withRouter(

@@ -15,5 +15,5 @@ export const PATIENT = {
 };
 
 export const ORGANIZATION = {
-  ...PREFIX_CONST_REQUEST("SEARCH")
+  ...PREFIX_CONST_REQUEST("ORGANIZATION")
 };

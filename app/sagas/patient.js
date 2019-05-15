@@ -29,7 +29,7 @@ export function* onSearchRequest(action) {
         }
       }
     `,
-      { limit: parseInt(action.limit) || 10, page: parseInt(action.page) || 1 }
+      { limit: parseInt(action.limit) || 100, page: parseInt(action.page) || 1 }
     );
 
     yield put(PATIENT.onSearchSuccess(PatientList));
