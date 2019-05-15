@@ -4,6 +4,7 @@ import queryString from "qs";
 import App from "components/Admin";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import Link from "next/link";
 import { withRouter } from "next/router";
 import { Row, Col, Layout, Table } from "antd";
 import { createStructuredSelector } from "reselect";
@@ -15,7 +16,8 @@ class Organizations extends Component {
     {
       title: "Id",
       key: "id",
-      dataIndex: "id"
+      dataIndex: "id",
+      render: (item) => <Link as={`/organizations/${item}`} href={`/organizations/detail?id=${item}`}><a>{item}</a></Link>
     },
     {
       title: "Name",

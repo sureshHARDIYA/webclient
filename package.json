@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "build": "next build",
-    "dev": "next -p 3005",
+    "dev": "PORT=3005 nodemon server",
     "start": "NODE_ENV=production next start -p 3005",
     "eslint": "say 'checking eslint' && eslint --ignore-path .gitignore app/**/*.js pages/**/*.js && say 'eslint clean'"
   },
@@ -91,6 +91,7 @@
     "less-loader": "^4.1.0",
     "loadable-components": "^2.2.3",
     "node-sass": "^4.11.0",
+    "nodemon": "^1.19.0",
     "pre-commit": "1.2.2",
     "react-fittext": "^1.0.0",
     "react-icons": "3.2.2",

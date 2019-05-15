@@ -4,6 +4,7 @@ import { Row, Col, Layout, Table } from "antd";
 import { connect } from "react-redux";
 import queryString from "qs";
 import { withRouter } from "next/router";
+import Link from "next/link";
 import Head from "next/head";
 import App from "components/Admin";
 import { onSearchRequest } from "actions/patient";
@@ -15,7 +16,8 @@ class Patients extends Component {
     {
       title: "Id",
       key: "id",
-      dataIndex: "id"
+      dataIndex: "id",
+      render: (item) => <Link as={`/patients/${item}`} href={`/patients/detail?id=${item}`}><a>{item}</a></Link>
     },
     {
       title: "Name",
