@@ -50,7 +50,7 @@ export function* onSingleRequest(action) {
     const { Organization } = yield call(
       client,
       `
-      query Organzation {
+      query Organization {
           Organization(_id: "${action.id}") {
             resourceType
             name

@@ -1,6 +1,6 @@
 import { fromJS } from "immutable";
 import { createReducer } from "reduxsauce";
-import { ORGANIZATION } from "actions/constants";
+import { PATIENT } from "actions/constants";
 
 export const INITIAL_STATE = fromJS({
   row: {},
@@ -16,9 +16,9 @@ export const onSingleSuccess = (state, action) =>
   state.set("isLoading", false).set("row", fromJS(action.entry));
 
 export const ACTION_HANDLERS = {
-  [ORGANIZATION.SINGLE_REQUEST]: onSingleRequest,
-  [ORGANIZATION.SINGLE_FAILURE]: onSingleFailure,
-  [ORGANIZATION.SINGLE_SUCCESS]: onSingleSuccess
+  [PATIENT.SINGLE_REQUEST]: onSingleRequest,
+  [PATIENT.SINGLE_FAILURE]: onSingleFailure,
+  [PATIENT.SINGLE_SUCCESS]: onSingleSuccess
 };
 
 export default createReducer(INITIAL_STATE, ACTION_HANDLERS);

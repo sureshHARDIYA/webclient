@@ -38,3 +38,31 @@ export function* onSearchRequest(action) {
     yield put(PATIENT.onSearchFailure({ error: err }));
   }
 }
+
+export function* onSingleRequest(action) {
+  try {
+    const { Patient } = yield call(
+      client,
+      `
+      query Patient {
+          Patient(_id: "${action.id}") {
+            name {
+              family
+              given
+              text
+            }
+            active
+            address {
+              text
+            }
+            id
+          }
+        }
+    `
+    );
+    yield put(PATIENT.onSingleSuccess({ entry: Patient }));
+    action.cb && (yield call(action.cb, Patient));
+  } catch (err) {
+    yield put(PATIENT.onSingleFailure({ error: err }));
+  }
+}

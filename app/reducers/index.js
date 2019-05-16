@@ -5,6 +5,7 @@ import app from "./app";
 import patient from "./patient";
 import currentUser from "./currentUser";
 import organization from "./organization";
+import patientSingle from "./patientSingle";
 import organizationSingle from "./organizationSingle";
 
 export default combineReducers({
@@ -12,6 +13,7 @@ export default combineReducers({
   patient,
   currentUser,
   organization,
+  patientSingle,
   organizationSingle,
   form: formReducer
 });

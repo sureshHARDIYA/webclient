@@ -14,4 +14,5 @@ export default function* root() {
     ORGANIZATION.SINGLE_REQUEST,
     ORGANIZATIONWATCHER.onSingleRequest
   );
+  yield takeLatest(PATIENT.SINGLE_REQUEST, PATIENTWATCHER.onSingleRequest);
 }
