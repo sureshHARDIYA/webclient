@@ -55,8 +55,9 @@ export function* onSingleRequest(action) {
             resourceType
             name
             active
+            alias
             address {
-              line
+              text
             }
             type {
               coding {
@@ -65,6 +66,21 @@ export function* onSingleRequest(action) {
               }
             }
             id
+            telecom {
+              system
+              value
+              use
+            }
+            contact {
+              name {
+                family
+                given
+                text
+              }
+              address {
+                text
+              }
+            }
           }
         }
     `

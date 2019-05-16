@@ -5,13 +5,13 @@ import app from "./app";
 import patient from "./patient";
 import currentUser from "./currentUser";
 import organization from "./organization";
-import itemOrganization from "./itemOrganization";
+import organizationSingle from "./organizationSingle";
 
 export default combineReducers({
   app,
   patient,
   currentUser,
   organization,
-  itemOrganization,
+  organizationSingle,
   form: formReducer
 });
