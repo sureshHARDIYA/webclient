@@ -1,10 +1,18 @@
 import React, { Component } from "react";
 import Head from "next/head";
 import App from "components/Admin";
+import { connect } from "react-redux";
 import { Row, Col, Layout } from "antd";
 import { withRouter } from "next/router";
+import { onRequestSingle } from "actions/organization";
 
 class OrganizationDetail extends Component {
+  componentDidMount() {
+    if (this.props.onLoad) {
+      this.props.onLoad(this.props.router.query.id);
+    }
+  }
+
   render() {
     return (
       <App {...this.props}>
@@ -25,4 +33,13 @@ class OrganizationDetail extends Component {
   }
 }
 
-export default withRouter(OrganizationDetail);
+const mapDispatchToProps = dispatch => ({
+  onLoad: id => dispatch(onRequestSingle(id))
+});
+
+export default withRouter(
+  connect(
+    null,
+    mapDispatchToProps
+  )(OrganizationDetail)
+);
