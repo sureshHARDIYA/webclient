@@ -1,6 +1,6 @@
 import { fromJS } from "immutable";
 import { createReducer } from "reduxsauce";
-import { ORGANIZATIONSINGLE } from "actions/constants";
+import { ORGANIZATION } from "actions/constants";
 
 export const INITIAL_STATE = fromJS({
   row: {},
@@ -8,23 +8,16 @@ export const INITIAL_STATE = fromJS({
   isLoading: false
 });
 
-export const onRequestSingle = state => state.set("isLoading", true);
+export const onSingleRequest = state => state.set("isLoading", true);
 
-export const onRequestSingleFailure = state => state.set("isLoading", false);
+export const onSingleFailure = state => state.set("isLoading", false);
 
-export const onRequestSingleSuccess = (state, action) => {
-  console.log("testing", action);
-
-  const { entry } = action;
-  return state
-    .set("isLoading", false)
-    .set("row", fromJS(entry.map(({ resource }) => resource)));
-};
+export const onSingleSuccess = (state, action) => state.set("isLoading", false).set("row", fromJS(action.entry));
 
 export const ACTION_HANDLERS = {
-  [ORGANIZATIONSINGLE.SINGLE_ORGANIZATION_REQUEST]: onRequestSingle,
-  [ORGANIZATIONSINGLE.SINGLE_ORGANIZATION_FAILURE]: onRequestSingleFailure,
-  [ORGANIZATIONSINGLE.SINGLE_ORGANIZATION_SUCCESS]: onRequestSingleSuccess
+  [ORGANIZATION.SINGLE_REQUEST]: onSingleRequest,
+  [ORGANIZATION.SINGLE_FAILURE]: onSingleFailure,
+  [ORGANIZATION.SINGLE_SUCCESS]: onSingleSuccess
 };
 
 export default createReducer(INITIAL_STATE, ACTION_HANDLERS);

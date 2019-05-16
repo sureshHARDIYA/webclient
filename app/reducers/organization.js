@@ -28,9 +28,9 @@ export const onSearchSuccess = (state, action) => {
 };
 
 export const ACTION_HANDLERS = {
-  [ORGANIZATION.ORGANIZATION_REQUEST]: onSearchRequest,
-  [ORGANIZATION.ORGANIZATION_FAILURE]: onSearchFailure,
-  [ORGANIZATION.ORGANIZATION_SUCCESS]: onSearchSuccess
+  [ORGANIZATION.SEARCH_REQUEST]: onSearchRequest,
+  [ORGANIZATION.SEARCH_FAILURE]: onSearchFailure,
+  [ORGANIZATION.SEARCH_SUCCESS]: onSearchSuccess
 };
 
 export default createReducer(INITIAL_STATE, ACTION_HANDLERS);

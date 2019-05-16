@@ -1,31 +1,31 @@
-import { ORGANIZATION, ORGANIZATIONSINGLE } from "./constants";
+import { ORGANIZATION as TYPES } from "./constants";
 
 export const onSearchRequest = (params = {}) => ({
-  type: ORGANIZATION.ORGANIZATION_REQUEST,
-  ...params
-});
-
-export const onSearchFailure = (params = {}) => ({
-  type: ORGANIZATION.ORGANIZATION_FAILURE,
-  ...params
+  ...params,
+  type: TYPES.SEARCH_REQUEST,
 });
 
 export const onSearchSuccess = (params = {}) => ({
-  type: ORGANIZATION.ORGANIZATION_SUCCESS,
-  ...params
+  ...params,
+  type: TYPES.SEARCH_SUCCESS,
 });
 
-export const onRequestSingle = id => ({
-  type: ORGANIZATIONSINGLE.SINGLE_ORGANIZATION_REQUEST,
-  id
+export const onSearchFailure = (params = {}) => ({
+  ...params,
+  type: TYPES.SEARCH_FAILURE,
 });
 
-export const onRequestSingleFailure = (params = {}) => ({
-  type: ORGANIZATIONSINGLE.SINGLE_ORGANIZATION_FAILURE,
-  ...params
+export const onSingleRequest = (params = {}) => ({
+  ...params,
+  type: TYPES.SINGLE_REQUEST,
 });
 
-export const onRequestSingleSuccess = (params = {}) => ({
-  type: ORGANIZATIONSINGLE.SINGLE_ORGANIZATION_SUCCESS,
-  ...params
+export const onSingleSuccess = (params = {}) => ({
+  ...params,
+  type: TYPES.SINGLE_SUCCESS,
+});
+
+export const onSingleFailure = (params = {}) => ({
+  ...params,
+  type: TYPES.SINGLE_FAILURE,
 });

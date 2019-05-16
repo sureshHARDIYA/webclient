@@ -4,7 +4,7 @@ import App from "components/Admin";
 import { connect } from "react-redux";
 import { Row, Col, Layout } from "antd";
 import { withRouter } from "next/router";
-import { onRequestSingle } from "actions/organization";
+import { onSingleRequest } from "actions/organization";
 
 class OrganizationDetail extends Component {
   componentDidMount() {
@@ -34,7 +34,7 @@ class OrganizationDetail extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  onLoad: id => dispatch(onRequestSingle(id))
+  onLoad: id => dispatch(onSingleRequest({ id }))
 });
 
 export default withRouter(

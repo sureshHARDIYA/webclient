@@ -3,8 +3,8 @@ import { call, put } from "redux-saga/effects";
 import {
   onSearchSuccess,
   onSearchFailure,
-  onRequestSingleSuccess,
-  onRequestSingleFailure
+  onSingleSuccess,
+  onSingleFailure
 } from "actions/organization";
 
 export function* onSearchRequest(action) {
@@ -45,13 +45,13 @@ export function* onSearchRequest(action) {
   }
 }
 
-export function* onRequestSingle(action) {
+export function* onSingleRequest(action) {
   try {
     const { Organization } = yield call(
       client,
       `
       query Organzation {
-          Organization(_id: "5cd3ee0b5883c03fe4522436") {
+          Organization(_id: "${action.id}") {
             resourceType
             name
             active
@@ -69,11 +69,9 @@ export function* onRequestSingle(action) {
         }
     `
     );
-    console.log(onRequestSingleSuccess(Organization));
-
-    yield put(onRequestSingleSuccess(Organization));
+    yield put(onSingleSuccess({ entry: Organization }));
     action.cb && (yield call(action.cb, Organization));
   } catch (err) {
-    yield put(onRequestSingleFailure({ error: err }));
+    yield put(onSingleFailure({ error: err }));
   }
 }
