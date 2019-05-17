@@ -2,16 +2,16 @@ import React, { Component } from "react";
 import Head from "next/head";
 import App from "components/Admin";
 import { connect } from "react-redux";
-import { Row, Col, Layout, Typography } from "antd";
 import { isEmpty } from "helpers/utils";
 import { withRouter } from "next/router";
+import { Row, Col, Layout, Typography } from "antd";
 import { createStructuredSelector } from "reselect";
-import { onSingleRequest } from "actions/patient";
-import { getisLoading, getPatientDetail } from "selectors/patientSingle";
+import { onSingleRequest } from "actions/questionnaire";
+import { getisLoading, getQuestionnaireDetail } from "selectors/questionnaireSingle";
 
 const { Text } = Typography;
 
-class PatientDetail extends Component {
+class QuestionnaireDetail extends Component {
   componentDidMount() {
     if (this.props.onLoad) {
       this.props.onLoad(this.props.router.query.id);
@@ -27,7 +27,7 @@ class PatientDetail extends Component {
 
     return (
       <App {...this.props}>
-        <div className="detail-patient-pages">
+        <div className="detail-questionnaire-pages">
           <Head>
             <title>detail patient page</title>
           </Head>
@@ -37,42 +37,39 @@ class PatientDetail extends Component {
                 <table style={{ width: "100%" }}>
                   <thead className="ant-table-thread" />
                   <tbody>
-                  <tr style={{ height: "50px" }}>
-                    <th>
-                      <Text strong>Name:</Text>
-                    </th>
-                    <td>
-                      <Text>{row.name.map((item, index) => <span key={index}>{item.text}{', '}</span>)}</Text>
-                    </td>
-                  </tr>
                     <tr style={{ height: "50px" }}>
                       <th>
-                        <Text strong>Gender:</Text>
+                        <Text strong>ID:</Text>
                       </th>
                       <td>
-                        <Text>{row.gender}</Text>
+                        <Text>{row.id}</Text>
                       </td>
                     </tr>
                     <tr style={{ height: "50px" }}>
                       <th>
-                        <Text strong>Active:</Text>
+                        <Text strong>ResourceType:</Text>
                       </th>
                       <td>
-                        <Text>{row.active ? "Active" : "Not Active"}</Text>
+                        <Text>{row.resourceType}</Text>
                       </td>
                     </tr>
                     <tr style={{ height: "50px" }}>
                       <th>
-                        <Text strong>Address:</Text>
+                        <Text strong>URL:</Text>
                       </th>
                       <td>
                         <Text>
-                          {row.address.map((item, index) => (
-                            <span key={index}>
-                              {item.text}
-                              {","}
-                            </span>
-                          ))}
+                          {row.url}
+                        </Text>
+                      </td>
+                    </tr>
+                    <tr style={{ height: "50px" }}>
+                      <th>
+                        <Text strong>purpose:</Text>
+                      </th>
+                      <td>
+                        <Text>
+                          {row.purpose}
                         </Text>
                       </td>
                     </tr>
@@ -88,7 +85,7 @@ class PatientDetail extends Component {
 }
 
 const mapStateToProps = createStructuredSelector({
-  row: getPatientDetail(),
+  row: getQuestionnaireDetail(),
   isLoading: getisLoading()
 });
 
@@ -100,5 +97,5 @@ export default withRouter(
   connect(
     mapStateToProps,
     mapDispatchToProps
-  )(PatientDetail)
+  )(QuestionnaireDetail)
 );

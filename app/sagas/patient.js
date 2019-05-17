@@ -51,6 +51,7 @@ export function* onSingleRequest(action) {
               given
               text
             }
+            gender
             active
             address {
               text
