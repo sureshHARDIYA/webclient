@@ -107,9 +107,9 @@ Patients.propTypes = {
 };
 
 const mapStateToProps = createStructuredSelector({
-  list: PatientSelector.getPatientList(),
   total: PatientSelector.getCount(),
   isLoaded: PatientSelector.getLoaded(),
+  list: PatientSelector.getPatientList(),
   pageSize: PatientSelector.getPageSize(),
   totalPage: PatientSelector.getTotalPage(),
   currentPage: PatientSelector.getCurrentPage()

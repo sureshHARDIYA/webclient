@@ -1,6 +1,6 @@
 import client from "utils/graphql-client";
-import { call, put } from "redux-saga/effects";
 import * as PATIENT from "actions/patient";
+import { call, put } from "redux-saga/effects";
 
 export function* onSearchRequest(action) {
   try {
@@ -51,6 +51,7 @@ export function* onSingleRequest(action) {
               given
               text
             }
+            gender
             active
             address {
               text

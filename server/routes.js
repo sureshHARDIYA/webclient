@@ -10,4 +10,10 @@ module.exports = (app, server) => {
     const queryParams = { id: req.params.id };
     app.render(req, res, actualPage, queryParams);
   });
+
+  server.get('/questionnaires/:id', (req, res) => {
+    const actualPage = '/questionnaires/detail';
+    const queryParams = { id: req.params.id };
+    app.render(req, res, actualPage, queryParams);
+  });
 };
