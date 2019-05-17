@@ -108,11 +108,11 @@ Organizations.propTypes = {
 };
 
 const mapStateToProps = createStructuredSelector({
-  list: OrganizationSelector.getOrganizationList(),
   total: OrganizationSelector.getCount(),
   isLoaded: OrganizationSelector.getLoaded(),
   pageSize: OrganizationSelector.getPageSize(),
   totalPage: OrganizationSelector.getTotalPage(),
+  list: OrganizationSelector.getOrganizationList(),
   currentPage: OrganizationSelector.getCurrentPage()
 });
 

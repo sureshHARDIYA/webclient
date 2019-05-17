@@ -18,14 +18,13 @@ export const onSearchFailure = state => state.set("isLoading", false);
 
 export const onSearchSuccess = (state, action) => {
   const { entry, total, page, pageSize, totalPage } = action;
-  return state
-    .set("isLoading", false)
-    .set("page", page)
-    .set("total", total)
-    .set("pageSize", pageSize)
-    .set("totalPage", totalPage)
-    .set("list", fromJS(entry.map(({ resource }) => resource)));
-};
+  return state.set('isLoading', false)
+    .set('page', page)
+    .set('total', total)
+    .set('pageSize', pageSize)
+    .set('totalPage', totalPage)
+    .set('list', fromJS(entry.map(({ resource }) => resource)));
+}
 
 export const ACTION_HANDLERS = {
   [ORGANIZATION.SEARCH_REQUEST]: onSearchRequest,
