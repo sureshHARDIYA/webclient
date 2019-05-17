@@ -1,31 +1,31 @@
-import { PATIENT as TYPES } from "./constants";
+import { ORGANIZATION as TYPES } from "./constants";
 
 export const onSearchRequest = (params = {}) => ({
+  ...params,
   type: TYPES.SEARCH_REQUEST,
-  ...params
-});
-
-export const onSearchFailure = (params = {}) => ({
-  type: TYPES.SEARCH_FAILURE,
-  ...params
 });
 
 export const onSearchSuccess = (params = {}) => ({
+  ...params,
   type: TYPES.SEARCH_SUCCESS,
-  ...params
+});
+
+export const onSearchFailure = (params = {}) => ({
+  ...params,
+  type: TYPES.SEARCH_FAILURE,
 });
 
 export const onSingleRequest = (params = {}) => ({
   ...params,
-  type: TYPES.SINGLE_REQUEST
+  type: TYPES.SINGLE_REQUEST,
 });
 
 export const onSingleSuccess = (params = {}) => ({
   ...params,
-  type: TYPES.SINGLE_SUCCESS
+  type: TYPES.SINGLE_SUCCESS,
 });
 
 export const onSingleFailure = (params = {}) => ({
   ...params,
-  type: TYPES.SINGLE_FAILURE
+  type: TYPES.SINGLE_FAILURE,
 });

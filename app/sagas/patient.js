@@ -1,10 +1,12 @@
-import client from 'utils/graphql-client';
-import { call, put } from 'redux-saga/effects';
-import * as PATIENT from 'actions/patient';
+import client from "utils/graphql-client";
+import { call, put } from "redux-saga/effects";
+import * as PATIENT from "actions/patient";
 
 export function* onSearchRequest(action) {
   try {
-    const { PatientList } = yield call(client, `
+    const { PatientList } = yield call(
+      client,
+      `
       query PatientList($limit: Int, $page: Int) {
         PatientList(limit: $limit, page: $page) {
           total
@@ -26,11 +28,41 @@ export function* onSearchRequest(action) {
           }
         }
       }
-    `, { limit: parseInt(action.limit) || 10, page: parseInt(action.page) || 1 });
+    `,
+      { limit: parseInt(action.limit) || 100, page: parseInt(action.page) || 1 }
+    );
 
     yield put(PATIENT.onSearchSuccess(PatientList));
     action.cb && (yield call(action.cb, PatientList));
   } catch (err) {
-    yield put(PATIENT.onSearchFailure({ error:  err }));
+    yield put(PATIENT.onSearchFailure({ error: err }));
+  }
+}
+
+export function* onSingleRequest(action) {
+  try {
+    const { Patient } = yield call(
+      client,
+      `
+      query Patient {
+          Patient(_id: "${action.id}") {
+            name {
+              family
+              given
+              text
+            }
+            active
+            address {
+              text
+            }
+            id
+          }
+        }
+    `
+    );
+    yield put(PATIENT.onSingleSuccess({ entry: Patient }));
+    action.cb && (yield call(action.cb, Patient));
+  } catch (err) {
+    yield put(PATIENT.onSingleFailure({ error: err }));
   }
 }
