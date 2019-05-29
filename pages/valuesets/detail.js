@@ -1,19 +1,16 @@
 import React, { Component } from "react";
 import Head from "next/head";
+import { Row, Layout } from "antd";
 import App from "components/Admin";
 import { connect } from "react-redux";
-import { Row, Col, Layout } from "antd";
 import { isEmpty } from "helpers/utils";
 import { withRouter } from "next/router";
 import JSONPretty from "react-json-pretty";
+import { onSingleRequest } from "actions/valueset";
 import { createStructuredSelector } from "reselect";
-import { onSingleRequest } from "actions/questionnaire";
-import {
-  getisLoading,
-  getQuestionnaireDetail
-} from "selectors/questionnaireSingle";
+import { getisLoading, getValueSetDetail } from "selectors/valuesetSingle";
 
-class QuestionnaireDetail extends Component {
+class ValueSetDetail extends Component {
   componentDidMount() {
     if (this.props.onLoad) {
       this.props.onLoad(this.props.router.query.id);
@@ -29,15 +26,13 @@ class QuestionnaireDetail extends Component {
 
     return (
       <App {...this.props}>
-        <div className="detail-questionnaire-pages">
+        <div className="detail-valueset-pages">
           <Head>
             <title>detail patient page</title>
           </Head>
           <Layout.Content>
             <Row>
-              <Col span={24}>
-                <JSONPretty id="json-pretty" data={row} />
-              </Col>
+              <JSONPretty id="json-pretty" data={row} />
             </Row>
           </Layout.Content>
         </div>
@@ -47,7 +42,7 @@ class QuestionnaireDetail extends Component {
 }
 
 const mapStateToProps = createStructuredSelector({
-  row: getQuestionnaireDetail(),
+  row: getValueSetDetail(),
   isLoading: getisLoading()
 });
 
@@ -59,5 +54,5 @@ export default withRouter(
   connect(
     mapStateToProps,
     mapDispatchToProps
-  )(QuestionnaireDetail)
+  )(ValueSetDetail)
 );

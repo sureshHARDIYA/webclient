@@ -53,6 +53,8 @@ export function* onSingleRequest(action) {
             purpose
             item {
               type
+              text
+              answerValueSet
             }
           }
         }

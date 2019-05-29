@@ -1,27 +1,24 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { Row, Col, Layout, Table } from "antd";
-import { connect } from "react-redux";
-import queryString from "qs";
-import { withRouter } from "next/router";
 import Link from "next/link";
 import Head from "next/head";
+import queryString from "qs";
 import App from "components/Admin";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { withRouter } from "next/router";
+import { Row, Col, Layout, Table } from "antd";
 import { createStructuredSelector } from "reselect";
-import * as QuestionnaireSelector from "selectors/questionnaire";
-import { onSearchRequest } from "actions/questionnaire";
+import * as ValueSetSelector from "selectors/valueset";
+import { onSearchRequest } from "actions/valueset";
 
-class Questionnaires extends Component {
+class ValueSet extends Component {
   columns = [
     {
       title: "Id",
       key: "id",
       dataIndex: "id",
       render: item => (
-        <Link
-          as={`/questionnaires/${item}`}
-          href={`/questionnaires/detail?id=${item}`}
-        >
+        <Link as={`/valuesets/${item}`} href={`/valuesets/detail?id=${item}`}>
           <a>{item}</a>
         </Link>
       )
@@ -32,14 +29,14 @@ class Questionnaires extends Component {
       dataIndex: "title"
     },
     {
-      title: "Date",
-      key: "date",
-      dataIndex: "date"
+      title: "Version",
+      key: "version",
+      dataIndex: "version"
     },
     {
-      title: "Purpose",
-      key: "purpose",
-      dataIndex: "purpose"
+      title: "Publisher",
+      key: "publisher",
+      dataIndex: "publisher"
     }
   ];
 
@@ -67,7 +64,7 @@ class Questionnaires extends Component {
       <App {...this.props}>
         <div className="patients-pages">
           <Head>
-            <title>Questionnaires page</title>
+            <title>ValueSet page</title>
           </Head>
           <Layout.Content>
             <Row>
@@ -93,7 +90,7 @@ class Questionnaires extends Component {
   }
 }
 
-Questionnaires.propTypes = {
+ValueSet.propTypes = {
   onLoad: PropTypes.func,
   list: PropTypes.array.isRequired,
   total: PropTypes.number.isRequired,
@@ -105,12 +102,12 @@ Questionnaires.propTypes = {
 };
 
 const mapStateToProps = createStructuredSelector({
-  list: QuestionnaireSelector.getQuestionnaireList(),
-  total: QuestionnaireSelector.getCount(),
-  isLoaded: QuestionnaireSelector.getLoaded(),
-  pageSize: QuestionnaireSelector.getPageSize(),
-  totalPage: QuestionnaireSelector.getTotalPage(),
-  currentPage: QuestionnaireSelector.getCurrentPage()
+  list: ValueSetSelector.getValueSetList(),
+  total: ValueSetSelector.getCount(),
+  isLoaded: ValueSetSelector.getLoaded(),
+  pageSize: ValueSetSelector.getPageSize(),
+  totalPage: ValueSetSelector.getTotalPage(),
+  currentPage: ValueSetSelector.getCurrentPage()
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -121,5 +118,5 @@ export default withRouter(
   connect(
     mapStateToProps,
     mapDispatchToProps
-  )(Questionnaires)
+  )(ValueSet)
 );

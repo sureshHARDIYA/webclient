@@ -26,5 +26,12 @@ export default [
     name: "Questionnaire",
     route: "/questionnaires",
     roles: ["admin"]
+  },
+  {
+    id: "5",
+    icon: "box-plot",
+    name: "Valueset",
+    route: "/valuesets",
+    roles: ["admin"]
   }
 ];
