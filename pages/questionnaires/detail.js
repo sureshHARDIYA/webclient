@@ -2,14 +2,16 @@ import React, { Component } from "react";
 import Head from "next/head";
 import App from "components/Admin";
 import { connect } from "react-redux";
+import { Row, Col, Layout } from "antd";
 import { isEmpty } from "helpers/utils";
 import { withRouter } from "next/router";
-import { Row, Col, Layout, Typography } from "antd";
+import JSONPretty from "react-json-pretty";
 import { createStructuredSelector } from "reselect";
 import { onSingleRequest } from "actions/questionnaire";
-import { getisLoading, getQuestionnaireDetail } from "selectors/questionnaireSingle";
-
-const { Text } = Typography;
+import {
+  getisLoading,
+  getQuestionnaireDetail
+} from "selectors/questionnaireSingle";
 
 class QuestionnaireDetail extends Component {
   componentDidMount() {
@@ -34,47 +36,7 @@ class QuestionnaireDetail extends Component {
           <Layout.Content>
             <Row>
               <Col span={24}>
-                <table style={{ width: "100%" }}>
-                  <thead className="ant-table-thread" />
-                  <tbody>
-                    <tr style={{ height: "50px" }}>
-                      <th>
-                        <Text strong>ID:</Text>
-                      </th>
-                      <td>
-                        <Text>{row.id}</Text>
-                      </td>
-                    </tr>
-                    <tr style={{ height: "50px" }}>
-                      <th>
-                        <Text strong>ResourceType:</Text>
-                      </th>
-                      <td>
-                        <Text>{row.resourceType}</Text>
-                      </td>
-                    </tr>
-                    <tr style={{ height: "50px" }}>
-                      <th>
-                        <Text strong>URL:</Text>
-                      </th>
-                      <td>
-                        <Text>
-                          {row.url}
-                        </Text>
-                      </td>
-                    </tr>
-                    <tr style={{ height: "50px" }}>
-                      <th>
-                        <Text strong>purpose:</Text>
-                      </th>
-                      <td>
-                        <Text>
-                          {row.purpose}
-                        </Text>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
+                <JSONPretty id="json-pretty" data={row} />
               </Col>
             </Row>
           </Layout.Content>
