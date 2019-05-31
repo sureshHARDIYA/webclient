@@ -46,15 +46,23 @@ export function* onSingleRequest(action) {
       query Questionnaire {
           Questionnaire(_id: "${action.id}") {
             id
-            resourceType
-            url
             title
-            date
-            purpose
             item {
               type
               text
-              answerValueSet
+              answerValueSet {
+                id
+                compose {
+                  include {
+                    concept {
+                      display
+                      extension {
+                        valueDecimal
+                      }
+                    }
+                  }
+                }
+              }
             }
           }
         }

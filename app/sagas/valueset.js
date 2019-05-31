@@ -65,6 +65,19 @@ export function* onSingleRequest(action) {
             status
             publisher
             description
+            answerValueSet {
+              id
+              compose {
+                include {
+                  concept {
+                    display
+                    extension {
+                      valueDecimal
+                    }
+                  }
+                }
+              }
+            }
           }
         }
     `
