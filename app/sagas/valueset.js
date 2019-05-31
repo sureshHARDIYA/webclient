@@ -65,21 +65,18 @@ export function* onSingleRequest(action) {
             status
             publisher
             description
-            answerValueSet {
-              id
-              compose {
-                include {
-                  concept {
-                    display
-                    extension {
-                      valueDecimal
-                    }
+  					compose {
+              include {
+                concept {
+                  display
+                  extension {
+                    valueDecimal
                   }
                 }
               }
             }
-          }
         }
+}
     `
     );
     yield put(VALUESET.onSingleSuccess({ entry: ValueSet }));
